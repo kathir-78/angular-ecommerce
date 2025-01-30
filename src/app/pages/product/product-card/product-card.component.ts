@@ -1,6 +1,7 @@
-import { Component, input } from '@angular/core';
+import { Component, inject, input, signal } from '@angular/core';
 import { Product } from '../../../../models/product.model';
 import { PrimaryButtonComponent } from "../../../components/primary-button/primary-button.component";
+import { ProductCartService } from '../../../services/product-cart.service';
 
 @Component({
   selector: 'app-product-card',
@@ -25,12 +26,17 @@ import { PrimaryButtonComponent } from "../../../components/primary-button/prima
       <div class="text-sm pt-3">
         {{'₹' + product()?.price}}
       </div>
-      <app-primary-button label="Add to Cart" class="mt-3" />
+      <app-primary-button label="Add to Cart" class="mt-3" (onClicked)="cartService.addProduct(product()!)"/>
     </section>
   </section>
   `,
   styles: ``
 })
+
+
 export class ProductCardComponent {
- product = input<Product>();
+
+product = input<Product>();
+cartService = inject(ProductCartService); 
+
 }
