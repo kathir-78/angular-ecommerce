@@ -1,4 +1,4 @@
-import { Injectable, input, signal } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { Product } from '../../models/product.model';
 
 @Injectable({
@@ -7,24 +7,25 @@ import { Product } from '../../models/product.model';
 
 export class ProductCartService {
 
-  cart = signal<Product []>([
+  constructor() {
+    this.fetchProducts();
+  }
 
-    {
-      id: 1,
-      title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-      price: 109.95,
-      image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      stock: 10
-    },
-    {
-      id: 2,
-      title: "Mens Casual Premium Slim Fit T-Shirts ",
-      price: 22.3,
-      image: "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
-      stock: 0
-
+  async fetchProducts() {
+    try {
+      const response = await fetch('https://fakestoreapi.com/products');
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      this.products.set(data);
+    } catch (error) {
+      console.error('Error fetching products:', error);
     }
-  ]);
+  }
+
+  products = signal<Product []>([]);
+  cart = signal<Product []>([]);
 
   addProduct(product: Product) {
     this.cart.set([...this.cart(), product]);

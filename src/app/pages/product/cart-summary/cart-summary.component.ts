@@ -9,11 +9,12 @@ import { RouterLink } from '@angular/router';
   template: `
   @if(cartService.cartSummary() != 0) {
     <section class="bg-slate-100  p-6 flex flex-col rounded-2xl shodow-md">
+      <div class="text-2xl mb-4">Order Summary</div>
       <section class="flex flex-row justify-around">
         <div>
           Total
         </div>
-        <div><span>{{'₹ ' + cartService.cartSummary()}}</span></div>
+        <div><span class="font-bold">{{'₹ ' + cartService.cartSummary()}}</span></div>
       </section>
       <app-primary-button label="Place Order" class="flex justify-center pt-3"/>
     </section>
