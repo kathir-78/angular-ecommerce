@@ -26,7 +26,7 @@ import { ProductCartService } from '../../../services/product-cart.service';
       <div class="text-sm pt-3">
         {{'₹' + product()?.price}}
       </div>
-      <app-primary-button label="Add to Cart" class="mt-3" (onClicked)="cartService.addProduct(product()!)"/>
+      <app-primary-button label="Add to Cart" class="mt-3" (onClicked)="cartService.isProductInCart(product()!.id) || cartService.addProduct(product()!)"/>
     </section>
   </section>
   `,

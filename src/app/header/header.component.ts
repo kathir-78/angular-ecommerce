@@ -1,14 +1,15 @@
 import { Component, inject, signal } from '@angular/core';
 import { PrimaryButtonComponent } from "../components/primary-button/primary-button.component";
 import { ProductCartService } from '../services/product-cart.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-header',
-  imports: [PrimaryButtonComponent],
+  imports: [PrimaryButtonComponent, RouterLink],
   template: `
      <div class=" bg-sky-50 px-4 py-3 shadow-md flex justify-between items-center"> 
-      <span class="text-xl">My Store</span>
-      <app-primary-button [label]="'cart (' + cartService.showProduct() + ') '" />
+      <button class="text-xl" routerLink="/">My Store</button>
+      <app-primary-button [label]="'cart (' + cartService.showProduct() + ') '"  routerLink="/cart" />
      </div>
   `,
   styles: ``

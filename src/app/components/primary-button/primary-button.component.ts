@@ -14,9 +14,6 @@ export class PrimaryButtonComponent {
   label = input<string>();
   onClicked = output();  // custom event
 
-  inputsig() {
-    console.log("input signal is received");
-  }
   clickBtn() {
     this.onClicked.emit();
   }
