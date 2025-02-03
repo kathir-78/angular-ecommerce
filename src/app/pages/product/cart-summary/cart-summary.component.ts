@@ -1,12 +1,14 @@
 import { Component, inject } from '@angular/core';
 import { ProductCartService } from '../../../services/product-cart.service';
-import { PrimaryButtonComponent } from "../../../components/primary-button/primary-button.component";
 import { RouterLink } from '@angular/router';
+import { PrimaryButtonComponent } from '../../../components/primary-button/primary-button.component';
 
 @Component({
   selector: 'app-cart-summary',
-  imports: [PrimaryButtonComponent, RouterLink],
+  standalone: true,
+  imports:[PrimaryButtonComponent, RouterLink],
   template: `
+
   @if(cartService.cartSummary() != 0) {
     <section class="bg-slate-100  p-6 flex flex-col rounded-2xl shodow-md">
       <div class="text-2xl mb-4">Order Summary</div>
